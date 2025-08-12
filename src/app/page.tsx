@@ -4,11 +4,14 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SearchbBar from "./components/searchbar";
 import MengapaPilihKami from "./components/unggulan";
 import LayananKami from "./components/layanan";
 import LangkahRental from "./components/langkah"; 
 import ContactUs from "./components/kontak";
 import Footer from "./components/footer";
+import Link from "next/link";
+
 
 export default function Home() {
   
@@ -34,18 +37,16 @@ export default function Home() {
     { src: "/kawasaki-logo.png", name: "Kawasaki" }
   ];
 
-
-
-
   return (
     <>
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#196FEB] px-[100px] py-[15px] flex items-center justify-between text-white">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-[#196FEB] px-[100px] py-[15px] flex items-center justify-between text-white">
         <div className="font-black text-2xl">ARBITRANS</div>
         <nav>
           <ul className="flex space-x-8 items-center justify-center font-medium text-md">
-            <li>Beranda</li>
-            <li>Rental Kendaraan</li>
+            <li><Link href="/">Beranda</Link></li>
+            <li><Link href="/rental">Rental Kendaraan</Link></li>
+
           </ul>
         </nav>
         <button className="bg-white text-blue-600 px-6 py-[15px] rounded-xl font-medium text-md">
@@ -79,66 +80,9 @@ export default function Home() {
             />
           </div>
         </section>
-
-        {/* Form Pencarian */}
-        <section className="relative z-20 -mt-22 px-[100px]">
-          <div className="flex items-center justify-center mt-10">
-            <div className="bg-white shadow-lg rounded-lg p-4 flex w-full gap-4">
-              <div className="flex flex-col flex-1">
-                <label
-                  htmlFor="vehicleType"
-                  className="mb-1 text-sm font-medium text-gray-700"
-                >
-                  Jenis Kendaraan
-                </label>
-                <select
-                  id="vehicleType"
-                  className="border rounded-lg px-3 py-2 w-full"
-                >
-                  <option value="">Pilih kendaraan</option>
-                  <option value="mobil">Mobil</option>
-                  <option value="motor">Motor</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col flex-1">
-                <label
-                  htmlFor="startDate"
-                  className="mb-1 text-sm font-medium text-gray-700"
-                >
-                  Tanggal Awal Sewa
-                </label>
-                <input
-                  type="date"
-                  id="startDate"
-                  className="border rounded-lg px-3 py-2 w-full"
-                />
-              </div>
-
-              <div className="flex flex-col flex-1">
-                <label
-                  htmlFor="endDate"
-                  className="mb-1 text-sm font-medium text-gray-700"
-                >
-                  Tanggal Akhir Sewa
-                </label>
-                <input
-                  type="date"
-                  id="endDate"
-                  className="border rounded-lg px-3 py-2 w-full"
-                />
-              </div>
-
-              <div className="flex items-end flex-1">
-                <button
-                  className="bg-blue-500 text-white w-full py-2 rounded-lg hover:bg-blue-600"
-                >
-                  Cari
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+        
+        {/* Search Bar */}
+        <SearchbBar />
 
         {/* Tentang Kami */}
         <section className="flex gap-8 mt-[100px] px-[100px] items-stretch">
