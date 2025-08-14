@@ -1,16 +1,17 @@
 "use client";
-
 import Image from "next/image";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
+
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+
+import Footer from "./_components/footer";
+import ContactUs from "./_components/kontak";
+import LangkahRental from "./_components/langkah";
+import LayananKami from "./_components/layanan";
 import SearchbBar from "./_components/searchbar";
 import MengapaPilihKami from "./_components/unggulan";
-import LayananKami from "./_components/layanan";
-import LangkahRental from "./_components/langkah";
-import ContactUs from "./_components/kontak";
-import Footer from "./_components/footer";
-import Link from "next/link";
+import Header from "./_components/Header";
 
 export default function Home() {
   const brandSettings = {
@@ -37,23 +38,7 @@ export default function Home() {
 
   return (
     <>
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#196FEB] px-[100px] py-[15px] flex items-center justify-between text-white">
-        <div className="font-black text-2xl">ARBITRANS</div>
-        <nav>
-          <ul className="flex space-x-8 items-center justify-center font-medium text-md">
-            <li>
-              <Link href="/">Beranda</Link>
-            </li>
-            <li>
-              <Link href="/rental">Rental Kendaraan</Link>
-            </li>
-          </ul>
-        </nav>
-        <button className="bg-white text-blue-600 px-6 py-[15px] rounded-xl font-medium text-md">
-          Hubungi Kami
-        </button>
-      </header>
+      <Header />
 
       <main>
         {/* Hero */}
