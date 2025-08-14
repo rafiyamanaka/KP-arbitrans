@@ -1,5 +1,6 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
+import { Plus_Jakarta_Sans } from "next/font/google";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",

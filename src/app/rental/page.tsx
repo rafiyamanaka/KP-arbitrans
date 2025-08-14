@@ -1,5 +1,5 @@
 import Header from "../_components/Header";
-import SearchbBar from "../_components/searchbar";
+import SearchbBar from "../_components/Searchbar";
 import CarCard from "../_components/card";
 const rentalPage = () => {
   return (

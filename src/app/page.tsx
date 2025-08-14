@@ -9,9 +9,10 @@ import Footer from "./_components/footer";
 import ContactUs from "./_components/kontak";
 import LangkahRental from "./_components/langkah";
 import LayananKami from "./_components/layanan";
-import SearchbBar from "./_components/searchbar";
+import SearchbBar from "./_components/Searchbar";
 import MengapaPilihKami from "./_components/unggulan";
 import Header from "./_components/Header";
+import HeroSection from "./_feature/homepage/HeroSection";
 
 export default function Home() {
   const brandSettings = {
@@ -38,36 +39,9 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-
+      <Header className="mb-10" />
       <main>
-        {/* Hero */}
-        <section className="bg-[#196FEB] pt-[140px] rounded-b-[56px] pb-[100px]">
-          <div className="container mx-auto text-white flex flex-col items-center justify-center text-center">
-            <p className="font-medium text-[16px]">
-              Selamat Datang di ARBITRANS Rental Kendaraan Purwokerto!
-            </p>
-            <h1 className="text-[32px] md:text-[48px] lg:text-[64px] font-bold leading-tight">
-              Rental Kendaraan Tanpa Repot. <br />
-              Kapan Saja, Dimana Saja!
-            </h1>
-          </div>
-          <div className="w-full flex justify-center mt-8">
-            <div className="w-[90%] md:w-[80%] h-[413px] rounded-t-[104px] bg-gradient-to-b from-[#6FB8FF] to-[#3F8CFF]/0" />
-          </div>
-          <div className="flex justify-center -mt-[250px]">
-            <Image
-              src="/kendaraan.png"
-              alt="Kendaraan ARBITRANS"
-              width={1200}
-              height={300}
-              className="object-contain"
-              priority
-            />
-          </div>
-        </section>
-
-        {/* Search Bar */}
+        <HeroSection />
         <SearchbBar />
 
         {/* Tentang Kami */}
