@@ -4,7 +4,7 @@ import Footer from "./_components/footer";
 import Header from "./_components/Header";
 import ContactUs from "./_components/kontak";
 import LangkahRental from "./_components/langkah";
-import LayananKami from "./_components/layanan";
+import LayananKami from "./_feature/homepage/LayananKami";
 import SearchbBar from "./_components/Searchbar";
 import MengapaPilihKami from "./_feature/homepage/MengapaPilihKami";
 import AboutUs from "./_feature/homepage/AboutUs";
@@ -21,7 +21,6 @@ export default function Home() {
         <AboutUs />
         <CarouselBrand />
         <MengapaPilihKami />
-        {/* Layanan Kami */}
         <LayananKami />
         {/* Langkah Rental */}
         <LangkahRental />

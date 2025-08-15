@@ -2,7 +2,7 @@ import HeadingSection from "@/app/_components/HeadingSection";
 
 function AboutUs() {
   return (
-    <section className="flex gap-8 mt-[100px] px-[100px] items-stretch">
+    <section className="flex gap-10 py-16 px-6 md:px-16 items-stretch">
       <div className="flex-1 bg-gray-200 rounded-xl flex items-center justify-center h-full">
         <img
           src="/tentang_kami.jpeg"

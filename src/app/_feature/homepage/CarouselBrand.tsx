@@ -10,9 +10,9 @@ const brands = [
 
 function CarouselBrand() {
   return (
-    <section className="py-16 overflow-x-clip -ml-1 my-10">
+    <section className="py-16 overflow-x-clip -ml-1 my-16">
       <div className="flex">
-        <div className="flex flex-none gap-8 py-6 animate-move-left">
+        <div className="flex flex-none gap-8 animate-move-left">
           {[...new Array(2)].fill(0).map((_, idx) => (
             <Fragment key={idx}>
               {brands.map((brand) => (
