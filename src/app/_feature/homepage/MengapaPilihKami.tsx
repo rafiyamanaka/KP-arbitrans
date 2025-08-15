@@ -1,6 +1,5 @@
 import HeadingSection from "@/app/_components/HeadingSection";
 import Image from "next/image";
-import { FaCar, FaWhatsapp, FaMoneyBillWave, FaHeadset } from "react-icons/fa";
 
 const features = [
   {

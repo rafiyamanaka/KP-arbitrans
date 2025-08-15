@@ -2,7 +2,7 @@
 
 import Footer from "./_components/footer";
 import Header from "./_components/Header";
-import ContactUs from "./_components/kontak";
+import Kontak from "./_feature/homepage/Kontak";
 import LangkahRental from "./_feature/homepage/LangkahRental";
 import LayananKami from "./_feature/homepage/LayananKami";
 import SearchbBar from "./_components/Searchbar";
@@ -25,7 +25,7 @@ export default function Home() {
         <LayananKami />
         <LangkahRental />
         <CallToAction />
-        <ContactUs />
+        <Kontak />
         <Footer />
       </main>
     </>
