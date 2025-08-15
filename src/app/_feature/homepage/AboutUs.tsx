@@ -1,13 +1,15 @@
 import HeadingSection from "@/app/_components/HeadingSection";
+import Image from "next/image";
 
 function AboutUs() {
   return (
-    <section className="flex gap-10 py-16 px-6 md:px-16 items-stretch">
-      <div className="flex-1 bg-gray-200 rounded-xl flex items-center justify-center h-full">
-        <img
+    <section className="flex gap-16 py-24 px-6 md:px-32 items-stretch">
+      <div className="flex-1 rounded-2xl relative w-full flex items-center justify-center aspect-[16/9] overflow-hidden">
+        <Image
           src="/tentang_kami.jpeg"
           alt="Tentang Kami"
-          className="w-full h-full object-cover rounded-xl"
+          fill
+          className="object-cover"
         />
       </div>
 

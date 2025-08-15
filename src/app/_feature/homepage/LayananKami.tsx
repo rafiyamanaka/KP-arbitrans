@@ -3,7 +3,7 @@ import HeadingSection from "../../_components/HeadingSection";
 
 export default function LayananKami() {
   return (
-    <section className="py-16">
+    <section className="py-24">
       <HeadingSection
         subHeading="Pelayanan Kami"
         heading="Layanan Kami Sesuai dengan Kebutuhan Anda"

@@ -115,7 +115,7 @@ const features = [
 
 export default function MengapaPilihKami() {
   return (
-    <section className="px-6 md:px-16 py-16">
+    <section className="px-6 md:px-32 py-24">
       <HeadingSection
         subHeading="Mengapa Pilih Kami"
         heading="Kepercayaan dan Kenyamanan Adalah Kunci Utama"
@@ -127,12 +127,12 @@ export default function MengapaPilihKami() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="border border-netral-400 rounded-2xl p-6 flex flex-col justify-center gap-6 hover:shadow-md transition h-full"
+              className="border border-netral-400 rounded-2xl p-6 flex flex-col justify-center gap-10 hover:shadow-md transition "
             >
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
                 {feature.icon}
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 <h3 className="font-semibold">{feature.title}</h3>
                 <p className="text-gray-600 text-sm">{feature.desc}</p>
               </div>
@@ -140,17 +140,13 @@ export default function MengapaPilihKami() {
           ))}
         </div>
 
-        <div className="flex-1 flex items-center justify-center">
-          <div className="w-full h-full">
-            <Image
-              src="/tentang_kami.jpeg"
-              alt="unggulan"
-              width={400}
-              height={300}
-              className="object-cover w-full h-full rounded-xl"
-              style={{ height: "100%" }}
-            />
-          </div>
+        <div className="flex-1 rounded-2xl relative w-full flex items-center justify-center aspect-[16/12] overflow-hidden">
+          <Image
+            src="/tentang_kami.jpeg"
+            alt="unggulan"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
     </section>

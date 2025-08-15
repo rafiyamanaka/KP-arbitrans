@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 
-type ButtonVariant = "primary" | "secondary" | "third" | "logout" | "delete";
+type ButtonVariant = "primary" | "secondary";
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
   onClick?: () => void;
@@ -39,9 +41,9 @@ function Button({
       } ${className}`}
       {...props}
     >
-      {leftIcon && <span>{leftIcon}</span>}
-      {text && <p>{text}</p>}
-      {rightIcon && <span>{rightIcon}</span>}
+      {leftIcon && <span className="flex items-center">{leftIcon}</span>}
+      {text && <span>{text}</span>} {/* <- ganti <p> menjadi <span> */}
+      {rightIcon && <span className="flex items-center">{rightIcon}</span>}
     </button>
   );
 }

@@ -3,7 +3,7 @@
 import Footer from "./_components/footer";
 import Header from "./_components/Header";
 import ContactUs from "./_components/kontak";
-import LangkahRental from "./_components/langkah";
+import LangkahRental from "./_feature/homepage/LangkahRental";
 import LayananKami from "./_feature/homepage/LayananKami";
 import SearchbBar from "./_components/Searchbar";
 import MengapaPilihKami from "./_feature/homepage/MengapaPilihKami";
@@ -22,7 +22,6 @@ export default function Home() {
         <CarouselBrand />
         <MengapaPilihKami />
         <LayananKami />
-        {/* Langkah Rental */}
         <LangkahRental />
         <div className="flex h-[334px] items-center justify-center px-[100px]">
           <div className="w-full relative rounded-lg flex justify-center overflow-hidden">
