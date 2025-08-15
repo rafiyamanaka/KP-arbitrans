@@ -1,9 +1,11 @@
-import { FC } from "react";
-import DatePicker, { ReactDatePickerProps } from "react-datepicker";
+import { ComponentProps, FC } from "react";
+import DatePicker from "react-datepicker";
 
+
+type DatePickerProps = ComponentProps<typeof DatePicker>;
 interface DateInputProps
-  extends Omit<ReactDatePickerProps, "onChange" | "selected"> {
-  value?: Date | null;
+  extends Omit<DatePickerProps, "onChange" | "selected" | "selectsRange"> {
+  selected?: Date | null;
   onChange?: (date: Date | null) => void;
   disabled?: boolean;
   inputClass?: string;
@@ -12,13 +14,13 @@ interface DateInputProps
 }
 
 const InputDate: FC<DateInputProps> = ({
-  value,
+  selected,
   onChange,
   disabled = false,
   inputClass = "",
   placeholderText,
   excludeIntervals,
-  ...props
+  minDate,
 }) => {
   return (
     <div
@@ -48,14 +50,14 @@ const InputDate: FC<DateInputProps> = ({
       <DatePicker
         placeholderText={placeholderText}
         onChange={onChange}
-        selected={value}
+        selected={selected ?? undefined}
         disabled={disabled}
         dateFormat="yyyy-MM-dd"
+        minDate={minDate}
         calendarClassName="z-50"
-        popperPlacement="top-start"
         excludeDateIntervals={excludeIntervals}
+        popperPlacement="bottom-start"
         className={`placeholder:text-netral-600 text-netral-800 w-full border-none bg-transparent font-medium outline-none placeholder:text-sm ${inputClass}`}
-        {...props}
       />
     </div>
   );

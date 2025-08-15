@@ -73,9 +73,9 @@
   transform: none !important;
   left: 0px !important;
   right: auto !important;
-  top: auto !important;
-  bottom: 100% !important;
-  margin-bottom: 1rem !important;
+  top: 100% !important;
+  bottom: auto !important;
+  margin-top: 1rem !important;
 }
 
 .react-datepicker__day:hover {
