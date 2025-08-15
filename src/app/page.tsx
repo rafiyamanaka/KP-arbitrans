@@ -1,17 +1,15 @@
 "use client";
-import Image from "next/image";
-import Slider from "react-slick";
 
 import Footer from "./_components/footer";
+import Header from "./_components/Header";
 import ContactUs from "./_components/kontak";
 import LangkahRental from "./_components/langkah";
 import LayananKami from "./_components/layanan";
 import SearchbBar from "./_components/Searchbar";
-import MengapaPilihKami from "./_components/unggulan";
-import Header from "./_components/Header";
-import HeroSection from "./_feature/homepage/HeroSection";
+import MengapaPilihKami from "./_feature/homepage/MengapaPilihKami";
 import AboutUs from "./_feature/homepage/AboutUs";
 import CarouselBrand from "./_feature/homepage/CarouselBrand";
+import HeroSection from "./_feature/homepage/HeroSection";
 
 export default function Home() {
   return (
@@ -22,10 +20,6 @@ export default function Home() {
         <SearchbBar />
         <AboutUs />
         <CarouselBrand />
-
-        {/* Carousel Brand */}
-
-        {/* Mengapa Pilih Kami */}
         <MengapaPilihKami />
         {/* Layanan Kami */}
         <LayananKami />
