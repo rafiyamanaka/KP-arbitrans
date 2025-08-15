@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 @import "tailwindcss";
-
 @tailwind utilities;
 
 @theme {
@@ -19,6 +18,17 @@
   --color-netral-700: #495057;
   --color-netral-800: #343a40;
   --color-netral-900: #212529;
+
+  --animate-move-left: move-left 30s linear infinite;
+
+  @keyframes move-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 .react-datepicker-wrapper {
