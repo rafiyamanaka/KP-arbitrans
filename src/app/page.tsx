@@ -1,6 +1,6 @@
 "use client";
 
-import Footer from "./_components/footer";
+import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import Kontak from "./_feature/homepage/Kontak";
 import LangkahRental from "./_feature/homepage/LangkahRental";
