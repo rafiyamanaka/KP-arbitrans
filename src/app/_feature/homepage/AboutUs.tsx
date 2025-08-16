@@ -3,7 +3,10 @@ import Image from "next/image";
 
 function AboutUs() {
   return (
-    <section className="flex gap-16 py-24 px-6 md:px-32 items-stretch">
+    <section
+      id="about-us"
+      className="flex gap-16 py-32 px-6 md:px-32 items-stretch"
+    >
       <div className="flex-1 rounded-2xl relative w-full flex items-center justify-center aspect-[16/9] overflow-hidden">
         <Image
           src="/tentang_kami.jpeg"

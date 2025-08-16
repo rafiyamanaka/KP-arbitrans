@@ -1,3 +1,4 @@
+"use client";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import Link from "next/link";
@@ -6,7 +7,10 @@ export default function Footer() {
   const pathname = usePathname();
 
   return (
-    <footer className="rounded-none shadow-sm px-24 py-16 bg-primary/10">
+    <footer
+      className="rounded-none shadow-sm px-24 py-16 bg-primary/10"
+      id="footer"
+    >
       <div className="flex sm:items-start sm:justify-between">
         <div>
           <Logo color="blue" />
