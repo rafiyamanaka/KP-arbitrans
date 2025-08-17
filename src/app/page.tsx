@@ -71,7 +71,7 @@ export default function Home() {
           </div>
           <div className="flex justify-center -mt-[250px]">
             <Image
-              src="/kendaraan.png"
+              src="/Hero-image.png"
               alt="Kendaraan ARBITRANS"
               width={1200}
               height={300}
