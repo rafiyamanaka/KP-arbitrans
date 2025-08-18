@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useScrollRange } from "../hooks/useScrollRange";
+import { useScrollRange } from "../_hooks/useScrollRange";
 import Link from "next/link";
 
 import Button from "./Button";

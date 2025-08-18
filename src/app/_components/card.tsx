@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Button from "./Button";
-import { Kendaraan } from "../types/kendaraan";
+import { Kendaraan } from "../_types/kendaraan";
 import { convertRupiah } from "../_utils/helper";
 
 type CarCardProps = {

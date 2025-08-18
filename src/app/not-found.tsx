@@ -1,7 +1,11 @@
+"use client";
+import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 import Button from "./_components/Button";
 
 export default function NotFoundPage() {
+  const router = useRouter();
   return (
     <>
       <div className="text-center mt-36 mb-16">
@@ -23,7 +27,11 @@ export default function NotFoundPage() {
           Kembali ke beranda dan lanjutkan perjalanan Anda!
         </p>
 
-        <Button text="Ke beranda" className="mx-auto" />
+        <Button
+          text="Ke beranda"
+          className="mx-auto"
+          onClick={() => router.push("/")}
+        />
       </div>
     </>
   );

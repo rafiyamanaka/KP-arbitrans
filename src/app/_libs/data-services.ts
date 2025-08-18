@@ -1,5 +1,5 @@
-import { Booking } from "../types/booking";
-import { Kendaraan } from "../types/kendaraan";
+import { Booking } from "../_types/booking";
+import { Kendaraan } from "../_types/kendaraan";
 import { supabase } from "./supabase";
 import { format } from "date-fns";
 
