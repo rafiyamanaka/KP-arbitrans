@@ -9,42 +9,51 @@ export default function BookingForm() {
 
       <form className="space-y-4">
         {/* Tanggal Awal Sewa */}
-        <div>
-          <label
-            className="block text-sm text-[#212529] mb-1"
-            htmlFor="start-date"
-          >
-            Tanggal Awal Sewa
-          </label>
-          <div className="relative">
-            <input
-              id="start-date"
-              type="text"
-              value="28-07-2025"
-              disabled
-              className="w-full border border-[#CED4DA] bg-[#F8F9FA] rounded-lg px-3 py-3 pr-10 text-[#495057] text-sm"
-            />
-            <FaRegCalendarAlt className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6C757D]" />
+        <div className="border border-[#CED4DA] rounded-lg p-4 space-y-4">
+          {/* Tanggal Awal Sewa */}
+          <div>
+            <label
+              className="block text-sm text-[#212529] mb-1"
+              htmlFor="start-date"
+            >
+              Tanggal Awal Sewa
+            </label>
+            <div className="relative">
+              <img
+                src="/date.svg"
+                alt="calendar"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6C757D]"
+              />
+              <input
+                id="start-date"
+                type="text"
+                value="28-07-2025"
+                className="w-full border border-[#CED4DA] bg-[#E9ECEF] rounded-lg pl-10 pr-3 py-3 text-[#495057] text-sm"
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Tanggal Akhir Sewa */}
-        <div>
-          <label
-            className="block text-sm text-[#212529] mb-1"
-            htmlFor="end-date"
-          >
-            Tanggal Akhir Sewa
-          </label>
-          <div className="relative">
-            <input
-              id="end-date"
-              type="text"
-              value="02-08-2025"
-              disabled
-              className="w-full border border-[#CED4DA] bg-[#F8F9FA] rounded-lg px-3 py-3 pr-10 text-[#495057] text-sm"
-            />
-            <FaRegCalendarAlt className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6C757D]" />
+          {/* Tanggal Akhir Sewa */}
+          <div>
+            <label
+              className="block text-sm text-[#212529] mb-1"
+              htmlFor="end-date"
+            >
+              Tanggal Akhir Sewa
+            </label>
+            <div className="relative">
+              <img
+                src="/date.svg"
+                alt="calendar"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6C757D]"
+              />
+              <input
+                id="end-date"
+                type="text"
+                value="02-08-2025"
+                className="w-full border border-[#CED4DA] bg-[#E9ECEF] rounded-lg pl-10 pr-3 py-3 text-[#495057] text-sm"
+              />
+            </div>
           </div>
         </div>
 
