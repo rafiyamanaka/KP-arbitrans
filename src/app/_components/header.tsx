@@ -1,12 +1,10 @@
 "use client";
-import { useScroll } from "motion/react";
 import { usePathname } from "next/navigation";
-
+import { useScrollRange } from "../hooks/useScrollRange";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+
 import Button from "./Button";
 import Logo from "./Logo";
-import { useScrollRange } from "../hooks/useScrollRange";
 
 type HeaderProps = {
   className?: string;
@@ -32,14 +30,14 @@ function Header({ className }: HeaderProps) {
 
   return (
     <header
-      className={`z-50 px-24 py-4 flex items-center transition-all duration-500 justify-between ${className} ${
+      className={`z-50  py-4 flex items-center transition-all duration-500 justify-between ${className} ${
         inRange
-          ? "fixed top-5 left-30 right-30 bg-white/10 backdrop-blur-sm rounded-xl border shadow-sm border-netral-200 "
-          : "top-0 left-0 right-0"
+          ? "fixed top-5 left-30 right-30 bg-white/10 backdrop-blur-sm rounded-xl border shadow-sm border-netral-200 px-16 "
+          : "top-0 left-0 right-0 px-24"
       }  ${
         pathname === "/"
           ? "bg-primary text-white"
-          : "bg-white text-primary shadow-sm"
+          : "bg-netral-100 text-primary shadow-sm"
       }`}
     >
       <Logo

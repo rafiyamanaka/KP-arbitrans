@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "motion/react";
 import HeadingSection from "@/app/_components/HeadingSection";
 import Image from "next/image";
 
@@ -114,7 +116,12 @@ const features = [
 
 export default function MengapaPilihKami() {
   return (
-    <section className="px-6 md:px-32 py-24">
+    <motion.section
+      initial={{ y: 60, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+      className="px-6 md:px-32 py-24"
+    >
       <HeadingSection
         subHeading="Mengapa Pilih Kami"
         heading="Kepercayaan dan Kenyamanan Adalah Kunci Utama"
@@ -148,6 +155,6 @@ export default function MengapaPilihKami() {
           />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

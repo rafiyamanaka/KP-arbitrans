@@ -47,7 +47,7 @@ export default function LangkahRental() {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="border border-netral-400 rounded-2xl p-5 flex items-center gap-5 "
+              className="border border-netral-400 hover:shadow-sm rounded-2xl p-5 flex items-center gap-5 "
             >
               <div className="w-16 h-16 text-primary bg-primary/10 rounded-full flex items-center justify-center font-bold text-2xl">
                 {index + 1}
