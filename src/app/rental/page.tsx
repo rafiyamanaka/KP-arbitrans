@@ -1,27 +1,17 @@
+import Footer from "../_components/Footer";
 import Header from "../_components/Header";
-import SearchbBar from "../_components/Searchbar";
-import CarCard from "../_components/card";
-const rentalPage = () => {
+import Searchbar from "../_components/Searchbar";
+import HeadingRental from "../_feature/rentalKendaraan/HeadingRental";
+import KendaraanCard from "../_feature/rentalKendaraan/KendaraanCard";
+
+export default function Rental() {
   return (
     <>
       <Header />
-      <div className="container items-center justify-center text-center mt-[100px] py-[48px] mb-[76px]">
-        <h2 className="text-[48px] font-bold mb-2 text-[#212529]">
-          Cari Kendaraan Untuk Anda
-        </h2>
-        <p className="text-[16px] text-[#495057]">
-          Temukan kendaraan yang sesuai dengan kebutuhan perjalanan Anda.
-        </p>
-      </div>
-      <SearchbBar />
-      <div className="container grid grid-cols-4 gap-6 mx-auto px-[100px]">
-        <CarCard />
-        <CarCard />
-        <CarCard />
-        <CarCard />
-      </div>
+      <HeadingRental />
+      <Searchbar className="!mt-0 mb-16" />
+      <KendaraanCard />
+      <Footer />
     </>
   );
-};
-
-export default rentalPage;
+}

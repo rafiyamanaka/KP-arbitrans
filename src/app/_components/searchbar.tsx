@@ -5,7 +5,11 @@ import InputSelect from "./InputSelect";
 import Button from "./Button";
 import { addDays } from "date-fns";
 
-function Searchbar() {
+interface searchbar {
+  className?: string;
+}
+
+function Searchbar({ className }: searchbar) {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [selected, setSelected] = useState("");
@@ -13,7 +17,9 @@ function Searchbar() {
   const todayString = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="relative z-20 -mt-20 px-24 flex items-center justify-center">
+    <div
+      className={`relative z-20 -mt-20 px-24 flex items-center justify-center ${className}`}
+    >
       <div
         className="bg-netral-100 rounded-2xl p-6 grid grid-cols-[0.8fr_1fr_1fr_0.5fr] w-full items-end gap-4"
         style={{
@@ -55,7 +61,7 @@ function Searchbar() {
         <div>
           <label
             htmlFor="endDate"
-            className="mb-1 text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-medium text-gray-700"
           >
             Tanggal Akhir Sewa
           </label>
