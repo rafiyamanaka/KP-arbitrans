@@ -3,14 +3,23 @@ import Footer from "@/app/_components/Footer";
 import Header from "@/app/_components/Header";
 import DetailRental from "@/app/_feature/detailKendaraan/DetailRental";
 import Gallery from "@/app/_feature/detailKendaraan/Gallery";
+import RekomendasiKendaraan from "@/app/_feature/detailKendaraan/RekomendasiKendaraan";
+import { getDataKendaraan } from "@/app/_libs/data-services";
 
-export default function DetailPage() {
+interface DetailPageProps {
+  params: { rentalId: string };
+}
+export default async function DetailPage({ params }: DetailPageProps) {
+  const { rentalId } = await params;
+  const kendaraan = await getDataKendaraan(Number(rentalId));
+
   return (
     <>
       <Header />
-      <Breadcrumbs />
-      <Gallery />
-      <DetailRental />
+      <Breadcrumbs kendaraanName={kendaraan.nama_kendaraan} />
+      <Gallery imageKendaraan={kendaraan.imageKendaraan} />
+      <DetailRental data={kendaraan} />
+      <RekomendasiKendaraan jenisKendaraan={kendaraan.jenis_kendaraan} />
       <Footer />
     </>
   );

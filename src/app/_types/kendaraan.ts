@@ -3,19 +3,23 @@ export interface ImageKendaraan {
 }
 
 export interface Kendaraan {
-  id: number;
+  id: string;
   nama_kendaraan: string;
-  jenis_kendaraan: string;
   harga_sewa: number;
-  tipe_kendaraan: string;
-  transmisi: string;
-  kapasitas_penumpang: string;
-  bahan_bakar: string;
+  kapasitas_penumpang: number;
   luas_bagasi: string;
-  tahun_produksi: string;
-  deskripsi_kendaraan: string;
-  imageKendaraan: ImageKendaraan[];
-  statusHariIni: "Tersedia" | "Disewa";
+  transmisi: string;
+  bahan_bakar: string;
+  imageKendaraan: { url_gambar: string }[];
+
+  // Opsional fields
+  jenis_kendaraan?: string;
+  tipe_kendaraan?: string;
+  tahun_produksi?: number;
+  deskripsi_kendaraan?: string;
+
+  // properti tambahan
+  statusHariIni?: string;
   tanggal_mulai?: string;
   tanggal_akhir?: string;
 }

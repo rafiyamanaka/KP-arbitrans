@@ -1,6 +1,6 @@
-import KendaraanCard from "../rentalKendaraan/KendaraanCard";
+import { Kendaraan } from "@/app/_types/kendaraan";
+import { convertRupiah } from "@/app/_utils/helper";
 import BookingForm from "./BookingForm";
-import RekomendasiKendaraan from "./RekomendasiKendaraan";
 import SectionDetailKendaraan from "./SectionDetailKendaraan";
 import SpesifikasiKendaraan from "./SpesifikasiKendaraan";
 
@@ -35,24 +35,30 @@ const benefits = [
   "Layanan customer support 24/7 selama masa sewa.",
 ];
 
-function DetailRental() {
+interface DetailRentalProps {
+  data: Kendaraan;
+}
+
+function DetailRental({ data }: DetailRentalProps) {
   return (
     <>
       <div className="px-24 mb-8">
         <div className="container flex items-center justify-between border-b border-netral-400 pb-8 pt-16">
           <h3 className="text-4xl font-semibold text-netral-900">
-            Toyota Avanza
+            {data.nama_kendaraan}
           </h3>
           <div className="flex flex-col items-end gap-1 leading-tight">
             <p className="text-netral-600">Harga Mulai</p>
-            <p className="text-4xl font-semibold text-primary">Rp 350.000</p>
+            <p className="text-4xl font-semibold text-primary">
+              {convertRupiah(data.harga_sewa)}
+            </p>
           </div>
         </div>
       </div>
 
       <div className="px-24 grid grid-cols-[1fr_0.4fr] gap-16 items-start">
         <div>
-          <SpesifikasiKendaraan />
+          <SpesifikasiKendaraan data={data} />
           <SectionDetailKendaraan
             heading="Informasi Penting untuk Dibaca Sebelum Menyewa"
             icon={
@@ -123,12 +129,10 @@ function DetailRental() {
           />
         </div>
 
-        <div>
+        <div className="min-h-full">
           <BookingForm />
         </div>
       </div>
-
-      <RekomendasiKendaraan />
     </>
   );
 }

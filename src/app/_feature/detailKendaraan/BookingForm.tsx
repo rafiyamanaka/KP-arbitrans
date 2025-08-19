@@ -1,9 +1,10 @@
 "use client";
+import Button from "@/app/_components/Button";
 import InputDate from "@/app/_components/InputDate";
 
 export default function BookingForm() {
   return (
-    <div className=" bg-netral-100 w-full rounded-2xl p-4 border border-netral-400 sticky">
+    <div className=" bg-netral-100 w-full rounded-2xl p-4 border border-netral-400 sticky top-24">
       <h3 className="text-lg font-semibold mb-6 flex items-center justify-center ">
         Form Penyewaan
       </h3>
@@ -38,35 +39,30 @@ export default function BookingForm() {
         <input
           type="text"
           placeholder="Nama Lengkap"
-          className="w-full border border-[#CED4DA] rounded-lg px-3 py-3 text-sm"
+          className="w-full border border-netral-400 text-netral-600 rounded-lg px-4 py-3 text-sm"
         />
 
         <input
           type="text"
           placeholder="NIK"
-          className="w-full border border-[#CED4DA] rounded-lg px-3 py-3 text-sm"
+          className="w-full border border-netral-400 text-netral-600 rounded-lg px-4 py-3 text-sm"
         />
 
         <input
           type="text"
           placeholder="No Telephone"
-          className="w-full border border-[#CED4DA] rounded-lg px-3 py-3 text-sm"
+          className="w-full border border-netral-400 text-netral-600 rounded-lg px-4 py-3 text-sm"
         />
 
         <textarea
           placeholder="Alamat"
-          className="w-full border border-[#CED4DA] rounded-lg px-3 py-3 text-sm"
+          className="w-full border border-netral-400 text-netral-600 rounded-lg px-4 py-3 text-sm"
           rows={3}
         ></textarea>
 
-        <button
-          type="submit"
-          className="w-full bg-[#196FEB] text-white py-[15px] rounded-xl hover:bg-blue-700 transition font-medium"
-        >
-          Buat Pemesanan
-        </button>
+        <Button text="Buat Pesanan" className="w-full px-6 py-3.5" />
 
-        <p className="text-xs text-[#6C757D] mt-2 text-center leading-relaxed">
+        <p className="text-xs text-netral-600 mt-2 text-center leading-relaxed">
           Data yang diberikan hanya untuk keperluan penyewaan kendaraan tidak
           untuk lainnya.
         </p>

@@ -20,7 +20,7 @@ export default function Breadcrumbs({ kendaraanName }: BreadcrumbsProps) {
 
       {kendaraanName && (
         <li className="inline-flex items-center">
-          <span className="font-semibold text-netral-600" aria-current="page">
+          <span className=" text-netral-600" aria-current="page">
             {kendaraanName}
           </span>
         </li>

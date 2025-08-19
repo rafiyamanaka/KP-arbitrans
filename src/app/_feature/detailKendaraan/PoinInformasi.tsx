@@ -6,7 +6,9 @@ interface PoinInformasiProps {
 function PoinInformasi({ icon, text }: PoinInformasiProps) {
   return (
     <p className="flex items-center gap-4 justify-start text-netral-700 leading-[28px] tracking-[0.5px] ">
-      <span>{icon}</span>
+      <span className="flex items-center justify-center w-6 h-6 flex-shrink-0">
+        {icon}
+      </span>
       <span>{text}</span>
     </p>
   );

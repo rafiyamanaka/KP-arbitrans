@@ -1,3 +1,4 @@
+import { data } from "motion/react-client";
 import { Booking } from "../_types/booking";
 import { Kendaraan } from "../_types/kendaraan";
 import { supabase } from "./supabase";
@@ -25,7 +26,9 @@ export const getKendaraan = async function (): Promise<Kendaraan[]> {
 
   const { data: semuaKendaraan, error: errorKendaraan } = await supabase
     .from("kendaraan")
-    .select("*, imageKendaraan(url_gambar)")
+    .select(
+      "nama_kendaraan, id, harga_sewa, kapasitas_penumpang, luas_bagasi, transmisi, bahan_bakar, jenis_kendaraan, imageKendaraan(url_gambar)"
+    )
     .order("nama_kendaraan");
 
   if (errorKendaraan) {
@@ -59,4 +62,19 @@ export const getKendaraan = async function (): Promise<Kendaraan[]> {
   });
 
   return hasilUrut;
+};
+
+export const getDataKendaraan = async function (id: number) {
+  const { data: kendaraan, error: errorKendaraan } = await supabase
+    .from("kendaraan")
+    .select("*, imageKendaraan(url_gambar)")
+    .eq("id", id)
+    .single<Kendaraan>();
+
+  if (errorKendaraan) {
+    console.error("Error ambil kendaraan: ", errorKendaraan);
+    throw new Error("Data kendaraan tidak bisa diambil.");
+  }
+
+  return kendaraan;
 };
