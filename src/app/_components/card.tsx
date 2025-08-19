@@ -8,17 +8,29 @@ type CarCardProps = {
 };
 
 export default function CarCard({ data }: CarCardProps) {
-  console.log(data);
+  const isDisewa = data.statusHariIni === "Disewa";
+
   return (
-    <div className="w-full border border-netral-400 bg-netral-100 rounded-2xl flex flex-col p-3 hover:-translate-y-1 duration-300 hover:shadow-sm">
+    <div
+      className={`w-full border border-netral-400 bg-netral-100 rounded-2xl flex flex-col p-3  ${
+        isDisewa
+          ? "bg-netral-200 grayscale cursor-not-allowed"
+          : " hover:-translate-y-1 duration-300 hover:shadow-sm"
+      }`}
+    >
       <div className="relative h-[240px] w-full mb-4">
         <Image
           src={data.imageKendaraan?.[0]?.url_gambar || "/emptyImage.jpg"}
           alt="Empty Image"
           quality={100}
           fill
-          className="rounded-xl object-contain bg-netral-100"
+          className="rounded-xl object-contain"
         />
+        {isDisewa && (
+          <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl font-bold text-netral-100">
+            Disewa
+          </p>
+        )}
       </div>
 
       <div className="flex flex-col gap-4 flex-grow">
@@ -130,30 +142,41 @@ export default function CarCard({ data }: CarCardProps) {
         <div className="mt-auto self-end w-full flex flex-col gap-4">
           <hr className="border-t border-netral-400" />
 
-          <div className="flex justify-between items-center">
-            <span className="text-netral-600 text-sm">Harga</span>
-            <span className="font-semibold text-netral-900">
-              {convertRupiah(data.harga_sewa)}
-            </span>
-          </div>
+          {isDisewa ? (
+            <p className="text-sm text-netral-700">{`Disewa dari tanggal ${data.tanggal_mulai} sampai tanggal ${data.tanggal_akhir}`}</p>
+          ) : (
+            <div className="flex justify-between items-center">
+              <span className="text-netral-600 text-sm">Harga</span>
+              <span className="font-semibold text-netral-900">
+                {convertRupiah(data.harga_sewa)}
+              </span>
+            </div>
+          )}
 
           <Button
             rightIcon={
-              <svg
-                width="21"
-                height="20"
-                viewBox="0 0 21 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.68698 14.9406C5.80493 15.0556 5.96397 15.1186 6.12865 15.1156C6.29284 15.1159 6.45091 15.0533 6.57032 14.9406L14.3453 7.15829V13.8739C14.3453 14.2191 14.6251 14.4989 14.9703 14.4989C15.1382 14.5035 15.3007 14.4394 15.4202 14.3214C15.5397 14.2035 15.606 14.0419 15.6037 13.8739V5.76375C15.6253 5.66867 15.6248 5.56823 15.5998 5.47037C15.5433 5.24892 15.3703 5.07601 15.1489 5.01945C15.051 4.99446 14.9506 4.99396 14.8555 5.01561H6.74532C6.40014 5.01561 6.12032 5.29543 6.12032 5.64061C6.12032 5.98579 6.40014 6.26561 6.74532 6.26561H13.4703L5.68698 14.0489C5.56738 14.1665 5.5 14.3271 5.5 14.4948C5.5 14.6624 5.56738 14.8231 5.68698 14.9406Z"
-                  fill="#F8F9FA"
-                />
-              </svg>
+              !isDisewa && (
+                <svg
+                  width="21"
+                  height="20"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.68698 14.9406C5.80493 15.0556 5.96397 15.1186 6.12865 15.1156C6.29284 15.1159 6.45091 15.0533 6.57032 14.9406L14.3453 7.15829V13.8739C14.3453 14.2191 14.6251 14.4989 14.9703 14.4989C15.1382 14.5035 15.3007 14.4394 15.4202 14.3214C15.5397 14.2035 15.606 14.0419 15.6037 13.8739V5.76375C15.6253 5.66867 15.6248 5.56823 15.5998 5.47037C15.5433 5.24892 15.3703 5.07601 15.1489 5.01945C15.051 4.99446 14.9506 4.99396 14.8555 5.01561H6.74532C6.40014 5.01561 6.12032 5.29543 6.12032 5.64061C6.12032 5.98579 6.40014 6.26561 6.74532 6.26561H13.4703L5.68698 14.0489C5.56738 14.1665 5.5 14.3271 5.5 14.4948C5.5 14.6624 5.56738 14.8231 5.68698 14.9406Z"
+                    fill="#F8F9FA"
+                  />
+                </svg>
+              )
             }
-            text="Lihat Detail"
-            className="w-full"
+            text={isDisewa ? "Tidak Tersedia" : "Lihat Detail"}
+            className={`w-full ${
+              isDisewa
+                ? "!bg-netral-300 !border-netral-400 !cursor-not-allowed text-netral-900"
+                : ""
+            }`}
+            disabled={isDisewa}
           />
         </div>
       </div>

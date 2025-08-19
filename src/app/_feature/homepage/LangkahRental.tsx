@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "motion/react";
 import HeadingSection from "@/app/_components/HeadingSection";
 import Image from "next/image";
 
@@ -26,7 +28,12 @@ const steps = [
 
 export default function LangkahRental() {
   return (
-    <section className="py-24 px-6 md:px-32">
+    <motion.section
+      className="py-24 px-6 md:px-32"
+      initial={{ y: 60, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+    >
       <HeadingSection
         subHeading="Langkah Rental"
         heading="Langkah Mudah Rental Kendaraan di ARBITRANS"
@@ -60,6 +67,6 @@ export default function LangkahRental() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -51,5 +51,12 @@ export const getKendaraan = async function (): Promise<Kendaraan[]> {
     }
   });
 
-  return hasil;
+  // Urutkan: Tersedia dulu, Disewa terakhir
+  const hasilUrut = hasil?.sort((a, b) => {
+    if (a.statusHariIni === "Disewa" && b.statusHariIni !== "Disewa") return 1;
+    if (a.statusHariIni !== "Disewa" && b.statusHariIni === "Disewa") return -1;
+    return 0;
+  });
+
+  return hasilUrut;
 };

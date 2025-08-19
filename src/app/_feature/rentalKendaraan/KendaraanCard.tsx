@@ -1,15 +1,30 @@
 import Button from "@/app/_components/Button";
 import CarCard from "@/app/_components/Card";
 import { getKendaraan } from "@/app/_libs/data-services";
+import { unstable_noStore as noStore } from "next/cache";
 
-async function KendaraanCard() {
+interface KendaraanCardProps {
+  count?: number;
+  jenisKendaraan?: string;
+}
+
+async function KendaraanCard({ count, jenisKendaraan }: KendaraanCardProps) {
+  noStore();
   const kendaraan = await getKendaraan();
   if (!kendaraan.length) return null;
+
+  const filteredKendaraan = jenisKendaraan
+    ? kendaraan.filter((item) => item.jenis_kendaraan === jenisKendaraan)
+    : kendaraan;
+
+  const displayedKendaraan = count
+    ? filteredKendaraan.slice(0, count)
+    : filteredKendaraan;
 
   return (
     <section className="px-24 pb-24">
       <div className="grid grid-cols-4 gap-6 mx-auto mb-16">
-        {kendaraan.map((data) => (
+        {displayedKendaraan.map((data) => (
           <CarCard data={data} key={data.id} />
         ))}
       </div>
