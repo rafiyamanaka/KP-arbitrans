@@ -96,3 +96,5 @@ export const getDataKendaraan = async function (id: number) {
 
   return kendaraan;
 };
+
+export const createRental = async function () {};

@@ -29,6 +29,10 @@ function Searchbar({ className }: searchbar) {
     if (jenis) setSelected(jenis);
   }, [searchParams]);
 
+  useEffect(() => {
+    setDates({ startDate, endDate });
+  }, [startDate, endDate, setDates]);
+
   const startParam = startDate ? format(startDate, "yyyy-MM-dd") : null;
   const endParam = endDate ? format(endDate, "yyyy-MM-dd") : null;
 

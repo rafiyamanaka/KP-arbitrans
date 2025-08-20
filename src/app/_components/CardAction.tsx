@@ -1,7 +1,8 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
-import Button from "./Button";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useSearch } from "../_context/SearchContext";
+import Button from "./Button";
 import Message from "./Message";
 
 interface CardActionProps {
@@ -11,8 +12,7 @@ interface CardActionProps {
 
 function CardAction({ isDisewa, id }: CardActionProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-
+  const { isDateEmpty } = useSearch();
   const [showMessage, setShowMessage] = useState(false);
 
   const handleShowMessage = () => {
@@ -20,17 +20,12 @@ function CardAction({ isDisewa, id }: CardActionProps) {
     setTimeout(() => setShowMessage(false), 5000);
   };
 
-  const startDate = searchParams.get("startDate");
-  const endDate = searchParams.get("endDate");
-
-  const isNotDate = !startDate || !endDate;
-
   return (
     <>
       <Button
         onClick={() => {
           {
-            if (isNotDate) handleShowMessage();
+            if (isDateEmpty) handleShowMessage();
             else router.push(`/rental/${id}`);
           }
         }}

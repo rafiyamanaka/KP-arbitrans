@@ -20,8 +20,6 @@ interface RentalPageProps {
 
 export default function Rental({ searchParams }: RentalPageProps) {
   const { jenis, startDate, endDate } = searchParams;
-
-  console.log(startDate, endDate, jenis);
   return (
     <>
       <Header />
