@@ -20,6 +20,6 @@ export interface Kendaraan {
 
   // properti tambahan
   statusHariIni?: string;
-  tanggal_mulai?: string;
-  tanggal_akhir?: string;
+  tanggal_mulai?: Date | null;
+  tanggal_akhir?: Date | null;
 }

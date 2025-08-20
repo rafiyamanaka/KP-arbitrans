@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import Footer from "../_components/Footer";
 import Header from "../_components/Header";
+import LoadingSkeleton from "../_components/LoadingSkeleton";
 import Searchbar from "../_components/Searchbar";
 import HeadingRental from "../_feature/rentalKendaraan/HeadingRental";
 import KendaraanCard from "../_feature/rentalKendaraan/KendaraanCard";
-import LoadingSkeleton from "../_components/LoadingSkeleton";
 
 export const metadata = {
   title: "Daftar Kendaraan",
@@ -18,8 +18,10 @@ interface RentalPageProps {
   };
 }
 
-export default function Rental({ searchParams }: RentalPageProps) {
-  const { jenis, startDate, endDate } = searchParams;
+export default async function Rental({ searchParams }: RentalPageProps) {
+  const params = await searchParams;
+  const { jenis, startDate, endDate } = params;
+
   return (
     <>
       <Header />

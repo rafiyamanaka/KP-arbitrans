@@ -130,7 +130,7 @@ function DetailRental({ data }: DetailRentalProps) {
         </div>
 
         <div className="min-h-full">
-          <BookingForm />
+          <BookingForm idKendaraan={Number(data.id)} />
         </div>
       </div>
     </>

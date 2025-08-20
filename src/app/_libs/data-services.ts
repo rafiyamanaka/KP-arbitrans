@@ -9,11 +9,8 @@ export const getKendaraan = async function (
   endDate?: string
 ): Promise<Kendaraan[]> {
   const today = format(new Date(), "yyyy-MM-dd");
-
   const filterStart = startDate || today;
   const filterEnd = endDate || today;
-
-  console.log(filterStart, filterEnd, jenisKendaraan);
 
   // Query booking
   const { data: bookingHariIni, error: errorBooking } = await supabase
@@ -96,5 +93,3 @@ export const getDataKendaraan = async function (id: number) {
 
   return kendaraan;
 };
-
-export const createRental = async function () {};
