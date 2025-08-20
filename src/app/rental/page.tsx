@@ -10,17 +10,31 @@ export const metadata = {
   title: "Daftar Kendaraan",
 };
 
-export default function Rental() {
+interface RentalPageProps {
+  searchParams: {
+    startDate?: string;
+    endDate?: string;
+    jenis?: string;
+  };
+}
+
+export default function Rental({ searchParams }: RentalPageProps) {
+  const { jenis, startDate, endDate } = searchParams;
+
+  console.log(startDate, endDate, jenis);
   return (
     <>
       <Header />
       <HeadingRental />
       <Searchbar className="!mt-0 mb-16" />
-
       <Suspense fallback={<LoadingSkeleton count={4} />}>
-        <KendaraanCard />
+        <KendaraanCard
+          startDate={startDate}
+          endDate={endDate}
+          jenisKendaraan={jenis}
+        />
       </Suspense>
-      
+
       <Footer />
     </>
   );

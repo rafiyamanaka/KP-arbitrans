@@ -32,7 +32,7 @@ function Header({ className }: HeaderProps) {
     <header
       className={`z-50  py-4 flex items-center transition-all duration-500 justify-between ${className} ${
         inRange && pathname === "/"
-          ? "fixed top-5 left-30 right-30 bg-white/10 backdrop-blur-sm rounded-xl border shadow-sm border-netral-200 px-16 "
+          ? `fixed top-5 left-32 right-32 bg-white/10 backdrop-blur-sm rounded-xl border shadow-sm border-netral-200 px-16 `
           : "top-0 left-0 right-0 px-24"
       }  ${
         pathname === "/"

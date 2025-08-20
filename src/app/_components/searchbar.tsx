@@ -1,20 +1,49 @@
 "use client";
-import { useState } from "react";
+import { addDays, format } from "date-fns";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import Button from "./Button";
 import InputDate from "./InputDate";
 import InputSelect from "./InputSelect";
-import Button from "./Button";
-import { addDays } from "date-fns";
+import { useSearch } from "../_context/SearchContext";
 
 interface searchbar {
   className?: string;
 }
 
 function Searchbar({ className }: searchbar) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [selected, setSelected] = useState("");
+  const { setDates } = useSearch();
 
-  const todayString = new Date().toISOString().split("T")[0];
+  useEffect(() => {
+    const start = searchParams.get("startDate");
+    const end = searchParams.get("endDate");
+    const jenis = searchParams.get("jenis");
+
+    if (start) setStartDate(new Date(start));
+    if (end) setEndDate(new Date(end));
+    if (jenis) setSelected(jenis);
+  }, [searchParams]);
+
+  const startParam = startDate ? format(startDate, "yyyy-MM-dd") : null;
+  const endParam = endDate ? format(endDate, "yyyy-MM-dd") : null;
+
+  const handleSearch = () => {
+    const query: Record<string, string> = {};
+
+    if (selected) query.jenis = selected;
+    if (startParam) query.startDate = startParam;
+    if (endParam) query.endDate = endParam;
+
+    const search = new URLSearchParams(query).toString();
+    router.push(`/rental${search ? `?${search}` : ""}`);
+
+    setDates({ startDate: startDate, endDate: endDate });
+  };
 
   return (
     <div
@@ -38,6 +67,7 @@ function Searchbar({ className }: searchbar) {
             onChange={setSelected}
             placeholder="Pilih opsi"
             options={[
+              { value: "", label: "Semua" },
               { value: "mobil", label: "Mobil" },
               { value: "motor", label: "Motor" },
             ]}
@@ -53,6 +83,7 @@ function Searchbar({ className }: searchbar) {
           </label>
           <InputDate
             selected={startDate}
+            minDate={new Date()}
             onChange={(date) => setStartDate(date)}
             placeholderText="Pilih tanggal awal"
           />
@@ -66,15 +97,17 @@ function Searchbar({ className }: searchbar) {
             Tanggal Akhir Sewa
           </label>
           <InputDate
+            disabled={!startDate}
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             minDate={startDate ? addDays(startDate, 1) : undefined}
-            placeholderText="Pilih tanggal akhir"
+            placeholderText="Pilih tanggal awal terlebih dahulu"
           />
         </div>
 
         <div>
           <Button
+            onClick={handleSearch}
             text="Cari"
             className="w-full"
             leftIcon={

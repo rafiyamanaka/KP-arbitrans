@@ -6,23 +6,25 @@ import { unstable_noStore as noStore } from "next/cache";
 interface KendaraanCardProps {
   count?: number;
   jenisKendaraan?: string;
+  startDate?: string;
+  endDate?: string;
 }
 
-async function KendaraanCard({ count, jenisKendaraan }: KendaraanCardProps) {
+async function KendaraanCard({
+  count,
+  jenisKendaraan,
+  startDate,
+  endDate,
+}: KendaraanCardProps) {
   noStore();
-  const kendaraan = await getKendaraan();
+
+  const kendaraan = await getKendaraan(jenisKendaraan, startDate, endDate);
   if (!kendaraan.length) return null;
 
-  const filteredKendaraan = jenisKendaraan
-    ? kendaraan.filter((item) => item.jenis_kendaraan === jenisKendaraan)
-    : kendaraan;
-
-  const displayedKendaraan = count
-    ? filteredKendaraan.slice(0, count)
-    : filteredKendaraan;
+  const displayedKendaraan = count ? kendaraan.slice(0, count) : kendaraan;
 
   return (
-    <section className="px-24 pb-24">
+    <section className="px-24 pb-24" id="about-us">
       <div className="grid grid-cols-4 gap-6 mx-auto mb-16">
         {displayedKendaraan.map((data) => (
           <CarCard data={data} key={data.id} />

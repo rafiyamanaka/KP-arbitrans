@@ -18,7 +18,7 @@ export default function CarCard({ data }: CarCardProps) {
           : " hover:-translate-y-1 duration-300 hover:shadow-sm"
       }`}
     >
-      <div className="relative h-[240px] w-full mb-4">
+      <div className="relative h-[240px] w-full mb-4 rounded-xl overflow-hidden">
         <Image
           src={data.imageKendaraan?.[0]?.url_gambar || "/emptyImage.jpg"}
           alt="Empty Image"

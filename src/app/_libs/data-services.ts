@@ -1,17 +1,27 @@
-import { data } from "motion/react-client";
+import { format } from "date-fns";
 import { Booking } from "../_types/booking";
 import { Kendaraan } from "../_types/kendaraan";
 import { supabase } from "./supabase";
-import { format } from "date-fns";
 
-export const getKendaraan = async function (): Promise<Kendaraan[]> {
+export const getKendaraan = async function (
+  jenisKendaraan?: string,
+  startDate?: string,
+  endDate?: string
+): Promise<Kendaraan[]> {
   const today = format(new Date(), "yyyy-MM-dd");
 
+  const filterStart = startDate || today;
+  const filterEnd = endDate || today;
+
+  console.log(filterStart, filterEnd, jenisKendaraan);
+
+  // Query booking
   const { data: bookingHariIni, error: errorBooking } = await supabase
     .from("booking")
     .select("id_kendaraan, tanggal_mulai, tanggal_akhir, status")
     .or(
-      `and(tanggal_mulai.lte.${today},tanggal_akhir.gte.${today},status.neq.Selesai),and(tanggal_akhir.lt.${today},status.eq.Telat)`
+      `and(tanggal_mulai.lte.${filterEnd},tanggal_akhir.gte.${filterStart},status.neq.Selesai),` +
+        `and(tanggal_akhir.lt.${filterStart},status.eq.Telat)`
     );
 
   if (errorBooking) {
@@ -24,12 +34,20 @@ export const getKendaraan = async function (): Promise<Kendaraan[]> {
     mapBooking.set(b.id_kendaraan, b);
   });
 
-  const { data: semuaKendaraan, error: errorKendaraan } = await supabase
+  // Query kendaraan
+  let kendaraanQuery = supabase
     .from("kendaraan")
     .select(
       "nama_kendaraan, id, harga_sewa, kapasitas_penumpang, luas_bagasi, transmisi, bahan_bakar, jenis_kendaraan, imageKendaraan(url_gambar)"
     )
     .order("nama_kendaraan");
+
+  // Filter jenis
+  if (jenisKendaraan) {
+    kendaraanQuery = kendaraanQuery.eq("jenis_kendaraan", jenisKendaraan);
+  }
+
+  const { data: semuaKendaraan, error: errorKendaraan } = await kendaraanQuery;
 
   if (errorKendaraan) {
     console.error("Error ambil kendaraan: ", errorKendaraan);

@@ -1,8 +1,10 @@
 "use client";
 import Button from "@/app/_components/Button";
 import InputDate from "@/app/_components/InputDate";
+import { useSearch } from "@/app/_context/SearchContext";
 
 export default function BookingForm() {
+  const { dates } = useSearch();
   return (
     <div className=" bg-netral-100 w-full rounded-2xl p-4 border border-netral-400 sticky top-24">
       <h3 className="text-lg font-semibold mb-6 flex items-center justify-center ">
@@ -18,7 +20,11 @@ export default function BookingForm() {
             >
               Tanggal Awal Sewa
             </label>
-            <InputDate disabled={true} placeholderText="Pilih tanggal awal" />
+            <InputDate
+              selected={dates.startDate}
+              disabled={true}
+              placeholderText="Pilih tanggal awal"
+            />
           </div>
 
           <div>
@@ -28,7 +34,11 @@ export default function BookingForm() {
             >
               Tanggal Akhir Sewa
             </label>
-            <InputDate disabled={true} placeholderText="Pilih tanggal akhir" />
+            <InputDate
+              selected={dates.endDate}
+              disabled={true}
+              placeholderText="Pilih tanggal akhir"
+            />
           </div>
         </div>
 
