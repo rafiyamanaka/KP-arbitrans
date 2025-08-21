@@ -4,6 +4,8 @@ import { Kendaraan } from "../_types/kendaraan";
 import { supabase } from "./supabase";
 
 export const getKendaraan = async function (
+  limit: number = 8,
+  offset: number = 0,
   jenisKendaraan?: string,
   startDate?: string,
   endDate?: string
@@ -37,7 +39,8 @@ export const getKendaraan = async function (
     .select(
       "nama_kendaraan, id, harga_sewa, kapasitas_penumpang, luas_bagasi, transmisi, bahan_bakar, jenis_kendaraan, imageKendaraan(url_gambar)"
     )
-    .order("nama_kendaraan");
+    .order("nama_kendaraan")
+    .range(offset, offset + limit - 1);
 
   // Filter jenis
   if (jenisKendaraan) {
@@ -51,7 +54,6 @@ export const getKendaraan = async function (
     throw new Error("Data kendaraan tidak bisa diambil.");
   }
 
-  // Gabungkan info status
   const hasil = semuaKendaraan?.map((k) => {
     const booking = mapBooking.get(k.id);
     if (booking) {
@@ -69,7 +71,6 @@ export const getKendaraan = async function (
     }
   });
 
-  // Urutkan: Tersedia dulu, Disewa terakhir
   const hasilUrut = hasil?.sort((a, b) => {
     if (a.statusHariIni === "Disewa" && b.statusHariIni !== "Disewa") return 1;
     if (a.statusHariIni !== "Disewa" && b.statusHariIni === "Disewa") return -1;
@@ -77,6 +78,32 @@ export const getKendaraan = async function (
   });
 
   return hasilUrut;
+};
+
+export const getKendaraanCount = async function (
+  jenisKendaraan?: string
+): Promise<number> {
+  try {
+    let countQuery = supabase
+      .from("kendaraan")
+      .select("*", { count: "exact", head: true });
+
+    if (jenisKendaraan) {
+      countQuery = countQuery.eq("jenis_kendaraan", jenisKendaraan);
+    }
+
+    const { count, error } = await countQuery;
+
+    if (error) {
+      console.error("Error counting kendaraan:", error);
+      return 0;
+    }
+
+    return count || 0;
+  } catch (error) {
+    console.error("Error in getKendaraanCount:", error);
+    return 0;
+  }
 };
 
 export const getDataKendaraan = async function (id: number) {
