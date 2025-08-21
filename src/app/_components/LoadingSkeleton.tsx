@@ -1,4 +1,5 @@
 import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface LoadingSkeleton {
   count: number;
@@ -6,7 +7,7 @@ interface LoadingSkeleton {
 function LoadingSkeleton({ count }: LoadingSkeleton) {
   return (
     <div
-      className="grid gap-4"
+      className="grid gap-4 px-24 pb-16"
       style={{ gridTemplateColumns: `repeat(${count}, 1fr)` }}
     >
       {Array.from({ length: count }).map((_, i) => (

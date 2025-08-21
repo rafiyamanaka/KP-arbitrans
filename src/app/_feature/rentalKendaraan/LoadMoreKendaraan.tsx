@@ -82,12 +82,6 @@ export default function LoadMoreKendaraan({
           />
         </div>
       )}
-
-      {hasMoreData && (
-        <div className="text-center text-netral-600 text-sm mt-6">
-          Menampilkan {allData.length} dari {totalCount} kendaraan
-        </div>
-      )}
     </section>
   );
 }
