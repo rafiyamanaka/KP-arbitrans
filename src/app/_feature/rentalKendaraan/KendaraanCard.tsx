@@ -39,8 +39,8 @@ async function KendaraanCard({
     const hasMoreData = isLoadMore ? totalCount > initialLimit : false;
 
     return (
-      <section className="px-24 pb-24" id="about-us">
-        <div className="grid grid-cols-4 gap-6 mx-auto mb-16">
+      <section className="px-24 pb-24">
+        <div className="grid grid-cols-4 gap-6 mx-auto mb-6">
           {initialData.map((data) => (
             <CarCard data={data} key={data.id} />
           ))}

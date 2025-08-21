@@ -14,7 +14,7 @@ export const getKendaraan = async function (
   const filterStart = startDate || today;
   const filterEnd = endDate || today;
 
-  // Query booking
+  // 1. Query booking yang sedang berjalan
   const { data: bookingHariIni, error: errorBooking } = await supabase
     .from("booking")
     .select("id_kendaraan, tanggal_mulai, tanggal_akhir, status")
@@ -28,21 +28,20 @@ export const getKendaraan = async function (
     throw new Error("Gagal cek data booking.");
   }
 
+  // 1.1 Mengubah bentuk data menjadi map untuk memudahkan pencarian booking berdasarkan ID kendaraan
   const mapBooking = new Map<number, Booking>();
-  bookingHariIni?.forEach((b) => {
-    mapBooking.set(b.id_kendaraan, b);
+  bookingHariIni?.forEach((booking) => {
+    mapBooking.set(booking.id_kendaraan, booking);
   });
 
-  // Query kendaraan
+  // 2. Ambil semua data kendaraan tanpa limit
   let kendaraanQuery = supabase
     .from("kendaraan")
     .select(
       "nama_kendaraan, id, harga_sewa, kapasitas_penumpang, luas_bagasi, transmisi, bahan_bakar, jenis_kendaraan, imageKendaraan(url_gambar)"
     )
-    .order("nama_kendaraan")
-    .range(offset, offset + limit - 1);
+    .order("nama_kendaraan");
 
-  // Filter jenis
   if (jenisKendaraan) {
     kendaraanQuery = kendaraanQuery.eq("jenis_kendaraan", jenisKendaraan);
   }
@@ -54,30 +53,33 @@ export const getKendaraan = async function (
     throw new Error("Data kendaraan tidak bisa diambil.");
   }
 
-  const hasil = semuaKendaraan?.map((k) => {
+  // 3. Gabungkan dengan status dan pisahkan berdasarkan ketersediaan
+  const kendaraanTersedia: Kendaraan[] = [];
+  const kendaraanDisewa: Kendaraan[] = [];
+
+  semuaKendaraan?.forEach((k) => {
     const booking = mapBooking.get(k.id);
+    const kendaraanWithStatus = {
+      ...k,
+      statusHariIni: booking ? ("Disewa" as const) : ("Tersedia" as const),
+      tanggal_mulai: booking?.tanggal_mulai,
+      tanggal_akhir: booking?.tanggal_akhir,
+    };
+
     if (booking) {
-      return {
-        ...k,
-        statusHariIni: "Disewa",
-        tanggal_mulai: booking.tanggal_mulai,
-        tanggal_akhir: booking.tanggal_akhir,
-      };
+      kendaraanDisewa.push(kendaraanWithStatus);
     } else {
-      return {
-        ...k,
-        statusHariIni: "Tersedia",
-      };
+      kendaraanTersedia.push(kendaraanWithStatus);
     }
   });
 
-  const hasilUrut = hasil?.sort((a, b) => {
-    if (a.statusHariIni === "Disewa" && b.statusHariIni !== "Disewa") return 1;
-    if (a.statusHariIni !== "Disewa" && b.statusHariIni === "Disewa") return -1;
-    return 0;
-  });
+  // 4. Buat array final dengan prioritas: Tersedia dulu, lalu Disewa
+  const finalArray = [...kendaraanTersedia, ...kendaraanDisewa];
 
-  return hasilUrut;
+  // 5. Apply pagination pada array final
+  const paginatedData = finalArray.slice(offset, offset + limit);
+
+  return paginatedData;
 };
 
 export const getKendaraanCount = async function (
