@@ -1,34 +1,34 @@
-import CarCard from "@/app/_components/Card";
 import { getKendaraan, getKendaraanCount } from "@/app/_libs/data-services";
 import { unstable_noStore as noStore } from "next/cache";
-import LoadMoreButton from "./LoadMoreButton";
+import LoadMoreKendaraan from "./LoadMoreKendaraan";
 
-interface KendaraanCardProps {
+interface KendaraanContainerProps {
   jenisKendaraan?: string;
   startDate?: string;
   endDate?: string;
-  initialLimit?: number;
+  itemsPerPage?: number;
   isLoadMore?: boolean;
 }
 
-async function KendaraanCard({
+export default async function KendaraanCard({
   jenisKendaraan,
   startDate,
   endDate,
-  initialLimit = 8,
+  itemsPerPage = 8,
   isLoadMore = true,
-}: KendaraanCardProps) {
+}: KendaraanContainerProps) {
   noStore();
 
   try {
+    // Load data awal di server
     const [initialData, totalCount] = await Promise.all([
-      getKendaraan(initialLimit, 0, jenisKendaraan, startDate, endDate),
+      getKendaraan(itemsPerPage, 0, jenisKendaraan, startDate, endDate),
       getKendaraanCount(jenisKendaraan),
     ]);
 
     if (!initialData.length) {
       return (
-        <section className="px-24 pb-24" id="about-us">
+        <section className="px-24 pb-24">
           <div className="text-center text-gray-500">
             Tidak ada kendaraan yang tersedia untuk kriteria yang dipilih.
           </div>
@@ -36,32 +36,22 @@ async function KendaraanCard({
       );
     }
 
-    const hasMoreData = isLoadMore ? totalCount > initialLimit : false;
-
+    // Pass data ke client component untuk interactivity
     return (
-      <section className="px-24 pb-24">
-        <div className="grid grid-cols-4 gap-6 mx-auto mb-6">
-          {initialData.map((data) => (
-            <CarCard data={data} key={data.id} />
-          ))}
-        </div>
-
-        {hasMoreData && (
-          <LoadMoreButton
-            initialCount={initialData.length}
-            totalCount={totalCount}
-            jenisKendaraan={jenisKendaraan}
-            startDate={startDate}
-            endDate={endDate}
-          />
-        )}
-      </section>
+      <LoadMoreKendaraan
+        initialData={initialData}
+        totalCount={totalCount}
+        jenisKendaraan={jenisKendaraan}
+        startDate={startDate}
+        endDate={endDate}
+        itemsPerPage={itemsPerPage}
+        isLoadMore={isLoadMore}
+      />
     );
   } catch (error) {
-    console.error("Error in KendaraanCard:", error);
-
+    console.error("Error in KendaraanContainer:", error);
     return (
-      <section className="px-24 pb-24" id="about-us">
+      <section className="px-24 pb-24">
         <div className="text-center text-red-500">
           Terjadi kesalahan saat memuat data kendaraan. Silakan coba lagi.
         </div>
@@ -69,5 +59,3 @@ async function KendaraanCard({
     );
   }
 }
-
-export default KendaraanCard;

@@ -12,7 +12,7 @@ function RekomendasiKendaraan({ jenisKendaraan }: RekomendasiKendaraanProps) {
       </h5>
       <KendaraanCard
         jenisKendaraan={jenisKendaraan}
-        initialLimit={4}
+        itemsPerPage={4}
         isLoadMore={false}
       />
     </div>
