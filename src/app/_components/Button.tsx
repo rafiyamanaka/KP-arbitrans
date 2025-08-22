@@ -36,13 +36,13 @@ function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 px-4 py-2 ${
+      className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg duration-200 border-2 px-4 py-2 ${
         buttonType[variant] || buttonType["primary"]
       } ${className}`}
       {...props}
     >
       {leftIcon && <span className="flex items-center">{leftIcon}</span>}
-      {text && <span>{text}</span>} {/* <- ganti <p> menjadi <span> */}
+      {text && <span>{text}</span>} 
       {rightIcon && <span className="flex items-center">{rightIcon}</span>}
     </button>
   );

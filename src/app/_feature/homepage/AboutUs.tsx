@@ -7,7 +7,7 @@ function AboutUs() {
   return (
     <section
       id="about-us"
-      className="flex gap-16 py-32 px-6 md:px-32 items-stretch"
+      className="flex flex-col lg:flex-row gap-16 py-10 md:py-16 lg:py-32 px-8 sm:px-16 lg:px-24 xl:px-32 items-stretch"
     >
       <motion.div
         initial={{ y: 40, opacity: 0 }}
@@ -16,7 +16,8 @@ function AboutUs() {
         className="flex-1 rounded-2xl relative w-full flex items-center justify-center aspect-[16/9] overflow-hidden"
       >
         <Image
-          src="/tentang_kami.jpeg"
+          src="/image-1.jpg"
+          quality={100}
           alt="Tentang Kami"
           fill
           className="object-cover"
@@ -32,6 +33,8 @@ function AboutUs() {
         <HeadingSection
           subHeading="Tentang Kami"
           heading="Rental Kendaraan Lokal, Nyaman & Terpercaya di Purwokerto"
+          subHeadingClass="text-center lg:text-left "
+          headingClass="text-center lg:text-left"
         />
         <p className="text-netral-700 tracking-[0.5px] leading-7 text-justify">
           Kami adalah penyedia layanan rental mobil dan motor sejak tahun 2003
