@@ -26,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.variable} antialiased bg-netral-100`}>
+      <body
+        className={`${plusJakartaSans.variable} antialiased bg-netral-100 max-w-[1600px] m-auto`}
+      >
         <SearchProvider>{children}</SearchProvider>
       </body>
     </html>

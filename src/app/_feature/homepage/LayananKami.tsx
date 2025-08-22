@@ -5,7 +5,7 @@ import HeadingSection from "../../_components/HeadingSection";
 export default function LayananKami() {
   return (
     <motion.section
-      className="py-24"
+      className="py-10 md:py-16 lg:py-24 xl:py-32 px-8 sm:px-16 lg:px-24 xl:px-32"
       initial={{ y: 60, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
@@ -17,7 +17,7 @@ export default function LayananKami() {
       />
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto px-4"
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-5xl mx-auto"
         initial={{ y: 60, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}

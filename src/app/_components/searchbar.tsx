@@ -51,15 +51,15 @@ function Searchbar({ className }: searchbar) {
 
   return (
     <div
-      className={`relative z-20 -mt-20 px-24 flex items-center justify-center ${className}`}
+      className={`relative z-20 -mt-16 sm:-mt-20 px-8 md:px-16 lg:px-24 flex items-center justify-center ${className}`}
     >
       <div
-        className="bg-netral-100 rounded-2xl p-6 grid grid-cols-[0.8fr_1fr_1fr_0.5fr] w-full items-end gap-4"
+        className="bg-netral-100 rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[0.8fr_1fr_1fr_0.5fr] w-full items-end gap-4"
         style={{
           boxShadow: "0px 2px 24px rgba(0,0,0,0.08)",
         }}
       >
-        <div>
+        <div className=" order-3 lg:order-1">
           <label
             htmlFor="vehicleType"
             className="mb-2 block text-sm font-medium text-gray-700"
@@ -78,7 +78,7 @@ function Searchbar({ className }: searchbar) {
           />
         </div>
 
-        <div>
+        <div className=" order-1 lg:order-2">
           <label
             htmlFor="startDate"
             className="mb-2 block  text-sm font-medium text-gray-700"
@@ -93,7 +93,7 @@ function Searchbar({ className }: searchbar) {
           />
         </div>
 
-        <div>
+        <div className=" order-2 lg:order-3">
           <label
             htmlFor="endDate"
             className="mb-2 block text-sm font-medium text-gray-700"
@@ -109,7 +109,7 @@ function Searchbar({ className }: searchbar) {
           />
         </div>
 
-        <div>
+        <div className=" order-4 lg:order-4 sm:mt-0 mt-2">
           <Button
             onClick={handleSearch}
             text="Cari"

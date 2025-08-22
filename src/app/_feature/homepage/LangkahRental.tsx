@@ -29,7 +29,7 @@ const steps = [
 export default function LangkahRental() {
   return (
     <motion.section
-      className="py-24 px-6 md:px-32"
+      className="py-10 md:py-16 lg:py-24 xl:py-32 px-8 sm:px-16 lg:px-24 xl:px-32"
       initial={{ y: 60, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
@@ -40,10 +40,11 @@ export default function LangkahRental() {
         headingClass="max-w-3xl mx-auto text-center"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-[0.7fr_1fr] gap-16 items-start w-full">
-        <div className="rounded-2xl relative w-full flex items-center justify-center aspect-[16/12] overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-[0.7fr_1fr] gap-16 items-start w-full">
+        <div className="rounded-2xl relative w-full lg:flex hidden  items-center justify-center aspect-[16/12] overflow-hidden">
           <Image
-            src="/tentang_kami.jpeg"
+            src="/image-3.png"
+            quality={100}
             alt="Tentang Kami"
             fill
             className="object-cover"
