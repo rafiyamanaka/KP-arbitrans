@@ -34,7 +34,6 @@ export default async function Rental({ searchParams }: RentalPageProps) {
           jenisKendaraan={jenis}
         />
       </Suspense>
-
       <Footer />
     </>
   );

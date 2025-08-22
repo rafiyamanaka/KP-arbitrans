@@ -1,3 +1,4 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -8,6 +9,7 @@ const nextConfig = {
         pathname: "/storage/v1/object/public/**",
       },
     ],
+
   },
 };
 

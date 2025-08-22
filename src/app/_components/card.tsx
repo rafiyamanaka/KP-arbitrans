@@ -138,7 +138,7 @@ export default function CarCard({ data }: CarCardProps) {
             <span>{data.bahan_bakar}</span>
           </div>
         </div>
-
+      </div>
         <div className="mt-auto self-end w-full flex flex-col gap-4">
           <hr className="border-t border-netral-400" />
 
