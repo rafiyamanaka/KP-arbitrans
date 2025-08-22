@@ -2,6 +2,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
 
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { SearchProvider } from "./_context/SearchContext";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -25,8 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.variable} antialiased bg-netral-100`}>
-        {children}
+      <body
+        className={`${plusJakartaSans.variable} antialiased bg-netral-100 max-w-[1600px] m-auto`}
+      >
+        <SearchProvider>{children}</SearchProvider>
       </body>
     </html>
   );

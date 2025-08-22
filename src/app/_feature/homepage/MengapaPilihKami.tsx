@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "motion/react";
 import HeadingSection from "@/app/_components/HeadingSection";
 import Image from "next/image";
 
@@ -114,14 +116,19 @@ const features = [
 
 export default function MengapaPilihKami() {
   return (
-    <section className="px-6 md:px-32 py-24">
+    <motion.section
+      initial={{ y: 60, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+      className="px-8 sm:px-16 lg:px-24 xl:px-32 py-10 md:py-16 lg:py-24 xl:py-32"
+    >
       <HeadingSection
         subHeading="Mengapa Pilih Kami"
         heading="Kepercayaan dan Kenyamanan Adalah Kunci Utama"
         headingClass="max-w-3xl mx-auto text-center"
       />
 
-      <div className="flex flex-col md:flex-row gap-16 items-stretch">
+      <div className="flex flex-col xl:flex-row gap-6 xl:gap-16 items-stretch">
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
           {features.map((feature, index) => (
             <div
@@ -141,13 +148,14 @@ export default function MengapaPilihKami() {
 
         <div className="flex-1 rounded-2xl relative w-full flex items-center justify-center aspect-[16/12] overflow-hidden">
           <Image
-            src="/tentang_kami.jpeg"
+            src="/image-2.jpg"
+            quality={100}
             alt="unggulan"
             fill
             className="object-cover"
           />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

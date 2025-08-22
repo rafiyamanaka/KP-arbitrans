@@ -1,15 +1,27 @@
+"use client";
+import { motion } from "motion/react";
 import HeadingSection from "../../_components/HeadingSection";
 
 export default function LayananKami() {
   return (
-    <section className="py-24">
+    <motion.section
+      className="py-10 md:py-16 lg:py-24 xl:py-32 px-8 sm:px-16 lg:px-24 xl:px-32"
+      initial={{ y: 60, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+    >
       <HeadingSection
         subHeading="Pelayanan Kami"
         heading="Layanan Kami Sesuai dengan Kebutuhan Anda"
         headingClass="max-w-3xl mx-auto text-center"
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto px-4">
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-5xl mx-auto"
+        initial={{ y: 60, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+      >
         <LayananCard
           heading="Sewa Harian"
           deskripsi="Pilihan fleksibel untuk keperluan pribadi, bisnis, atau wisata."
@@ -98,8 +110,8 @@ export default function LayananKami() {
             </svg>
           }
         />
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
 

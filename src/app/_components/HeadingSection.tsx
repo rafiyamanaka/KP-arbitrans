@@ -19,7 +19,7 @@ function HeadingSection({
         {subHeading}
       </p>
       <h2
-        className={`text-5xl font-bold  text-netral-900 tracking-[1.5px] mb-12 ${headingClass}`}
+        className={`text-3xl md:text-5xl font-bold  text-netral-900 tracking-[1.5px] mb-12 ${headingClass}`}
       >
         {heading}
       </h2>

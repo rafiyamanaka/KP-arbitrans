@@ -8,13 +8,13 @@ export default function Footer() {
 
   return (
     <footer
-      className="rounded-none shadow-sm px-24 py-16 bg-primary/10"
+      className="rounded-none shadow-sm bg-primary/10 py-10 md:py-16 lg:py-24 xl:py-32 px-8 sm:px-16 lg:px-24 xl:px-32"
       id="footer"
     >
-      <div className="flex sm:items-start sm:justify-between">
-        <div>
+      <div className="flex md:flex-row flex-col items-center justify-center md:items-start md:justify-between gap-16 md:gap-2">
+        <div className="flex flex-col items-center md:items-start">
           <Logo color="blue" />
-          <p className="font-medium text-netral-700 mt-4">
+          <p className="font-medium text-netral-700 mt-4 sm:text-left text-center">
             Rental Mudah. Kendaraan Siap. Langsung Berangkat!
           </p>
         </div>
@@ -41,7 +41,7 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-      <hr className="border-t border-netral-500 my-12" />
+      <hr className="border-t border-netral-500 my-6 md:my-12" />
       <span className="block text-sm text-netral-600 sm:text-center">
         © 2025{" "}
         <a href="https://arbitrans.com/" className="hover:underline">

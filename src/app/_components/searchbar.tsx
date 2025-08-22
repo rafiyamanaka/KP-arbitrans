@@ -1,26 +1,65 @@
 "use client";
-import { useState } from "react";
+import { addDays, format } from "date-fns";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import Button from "./Button";
 import InputDate from "./InputDate";
 import InputSelect from "./InputSelect";
-import Button from "./Button";
-import { addDays } from "date-fns";
+import { useSearch } from "../_context/SearchContext";
 
-function Searchbar() {
+interface searchbar {
+  className?: string;
+}
+
+function Searchbar({ className }: searchbar) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [selected, setSelected] = useState("");
+  const { setDates } = useSearch();
 
-  const todayString = new Date().toISOString().split("T")[0];
+  useEffect(() => {
+    const start = searchParams.get("startDate");
+    const end = searchParams.get("endDate");
+    const jenis = searchParams.get("jenis");
+
+    if (start) setStartDate(new Date(start));
+    if (end) setEndDate(new Date(end));
+    if (jenis) setSelected(jenis);
+  }, [searchParams]);
+
+  useEffect(() => {
+    setDates({ startDate, endDate });
+  }, [startDate, endDate, setDates]);
+
+  const startParam = startDate ? format(startDate, "yyyy-MM-dd") : null;
+  const endParam = endDate ? format(endDate, "yyyy-MM-dd") : null;
+
+  const handleSearch = () => {
+    const query: Record<string, string> = {};
+
+    if (selected) query.jenis = selected;
+    if (startParam) query.startDate = startParam;
+    if (endParam) query.endDate = endParam;
+
+    const search = new URLSearchParams(query).toString();
+    router.push(`/rental${search ? `?${search}` : ""}`);
+
+    setDates({ startDate: startDate, endDate: endDate });
+  };
 
   return (
-    <div className="relative z-20 -mt-20 px-24 flex items-center justify-center">
+    <div
+      className={`relative z-20 -mt-16 sm:-mt-20 px-8 md:px-16 lg:px-24 flex items-center justify-center ${className}`}
+    >
       <div
-        className="bg-netral-100 rounded-2xl p-6 grid grid-cols-[0.8fr_1fr_1fr_0.5fr] w-full items-end gap-4"
+        className="bg-netral-100 rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[0.8fr_1fr_1fr_0.5fr] w-full items-end gap-4"
         style={{
           boxShadow: "0px 2px 24px rgba(0,0,0,0.08)",
         }}
       >
-        <div>
+        <div className=" order-3 lg:order-1">
           <label
             htmlFor="vehicleType"
             className="mb-2 block text-sm font-medium text-gray-700"
@@ -32,13 +71,14 @@ function Searchbar() {
             onChange={setSelected}
             placeholder="Pilih opsi"
             options={[
+              { value: "", label: "Semua" },
               { value: "mobil", label: "Mobil" },
               { value: "motor", label: "Motor" },
             ]}
           />
         </div>
 
-        <div>
+        <div className=" order-1 lg:order-2">
           <label
             htmlFor="startDate"
             className="mb-2 block  text-sm font-medium text-gray-700"
@@ -47,28 +87,31 @@ function Searchbar() {
           </label>
           <InputDate
             selected={startDate}
+            minDate={new Date()}
             onChange={(date) => setStartDate(date)}
             placeholderText="Pilih tanggal awal"
           />
         </div>
 
-        <div>
+        <div className=" order-2 lg:order-3">
           <label
             htmlFor="endDate"
-            className="mb-1 text-sm font-medium text-gray-700"
+            className="mb-2 block text-sm font-medium text-gray-700"
           >
             Tanggal Akhir Sewa
           </label>
           <InputDate
+            disabled={!startDate}
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             minDate={startDate ? addDays(startDate, 1) : undefined}
-            placeholderText="Pilih tanggal akhir"
+            placeholderText="Pilih tanggal awal terlebih dahulu"
           />
         </div>
 
-        <div>
+        <div className=" order-4 lg:order-4 sm:mt-0 mt-2">
           <Button
+            onClick={handleSearch}
             text="Cari"
             className="w-full"
             leftIcon={

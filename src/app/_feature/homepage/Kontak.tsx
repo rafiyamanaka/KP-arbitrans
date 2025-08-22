@@ -2,15 +2,15 @@ import HeadingSection from "@/app/_components/HeadingSection";
 
 const Kontak = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-16 px-32 py-24">
+    <div className="flex flex-col md:flex-row gap-16 pb-24 pt-10 md:py-16 lg:py-24 xl:py-32 px-8 sm:px-16 lg:px-24 xl:px-32">
       <div className="flex-1 flex flex-col justify-center">
         <HeadingSection
           subHeading="Kontak Kami"
           heading="Punya Pertanyaan? Tim Kami Siap Bantu!"
-          subHeadingClass="text-left"
-          headingClass="max-w-xl !mb-6"
+          subHeadingClass="text-center md:text-left"
+          headingClass="w-full md:max-w-xl !mb-6 text-center md:text-left"
         />
-        <p className="mb-8 text-netral-700">
+        <p className="mb-4 md:mb-8 text-netral-700">
           Kami siap melayani kebutuhan transportasi Anda dengan cepat dan
           terpercaya.
         </p>
